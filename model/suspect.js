@@ -18,8 +18,8 @@ const suspectSchema = new Schema({
     type: String,
     required: true
   },
-  riskLevel: {
-    type: String,
+  arrestedCount:{
+    type: Number,
     required: true
   },
   avatar: {
