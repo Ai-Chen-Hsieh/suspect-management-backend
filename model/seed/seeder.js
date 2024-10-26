@@ -23,7 +23,8 @@ if (process.env.NODE_ENV !== 'production') {
       gender: item.gender,
       status: states[Math.floor(Math.random() * states.length)],
       arrestedCount: Math.floor(Math.random() * 21),
-      avatar: item.picture.large
+      avatar: item.picture.large,
+      priority: Math.floor(Math.random() * 20) % 2 === 0 ? true : false,
     }));
 
     // 插入資料

@@ -25,6 +25,10 @@ const suspectSchema = new Schema({
   avatar: {
     type: String,
     required: true
+  },
+  priority: {
+    type: Boolean,
+    required: true
   }
 })
 
