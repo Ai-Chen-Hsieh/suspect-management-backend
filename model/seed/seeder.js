@@ -17,15 +17,18 @@ if (process.env.NODE_ENV !== 'production') {
     const response = await axios.get('https://randomuser.me/api/?results=16&seed=seed&inc=gender,name,dob,picture');
     const results = response.data.results;
 
-    const data = results.map((item) => ({
+    const data = results.map((item) => {
+      const randomStatus = states[Math.floor(Math.random() * states.length)];
+
+      return {
       name: `${item.name.first} ${item.name.last}`,
       age: item.dob.age,
       gender: item.gender,
-      status: states[Math.floor(Math.random() * states.length)],
+      status: randomStatus,
       arrestedCount: Math.floor(Math.random() * 21),
       avatar: item.picture.large,
-      priority: Math.floor(Math.random() * 20) % 2 === 0 ? true : false,
-    }));
+      priority: randomStatus === 'wanted' ? true : Math.floor(Math.random() * 20) % 2 === 0 ? true : false,
+    }});
 
     // 插入資料
     await Suspect.insertMany(data);
