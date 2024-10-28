@@ -16,7 +16,7 @@ require('./config/mongoose')
 const cors = require('cors');
 const corsOptions = {
   origin: [
-    'https://suspect-management-frontend.vercel.app/',
+    'https://suspect-management-frontend.vercel.app',
     'http://localhost:5173'
   ],
   methods: 'GET,PUT,PATCH,POST,DELETE',

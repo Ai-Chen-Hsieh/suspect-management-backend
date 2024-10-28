@@ -36,16 +36,26 @@ router.put('/:id', (req, res) => {
 
   Suspect.findById(id)
   .then(crime => {
-    crime.status = status;
-    crime.priority = priority;
+    console.log("crime", crime)
+    console.log("status", status, "priority", priority)
 
-    if(crime.status === "arrested") {
-      crime.arrestedCount += 1;
+    if(status) {
+      console.log("有status", status)
+      crime.status = status;
+      if(crime.status === "arrested") {
+        crime.arrestedCount += 1;
+      }
+  
+      if(crime.status === "wanted" && crime.priority === false) {
+        crime.priority = true;
+      }
     }
 
-    if(crime.status === "wanted" && crime.priority === false) {
-      crime.priority = true;
+    if(priority !== undefined){
+      console.log("有priority", priority)
+      crime.priority = priority;
     }
+    
 
     return crime.save()
   })
